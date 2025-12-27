@@ -1,91 +1,87 @@
- #!/bin/bash
+#!/bin/bash
 
-# colour 
-Black="\033[1;30m"       # Black
-Red="\033[1;31m"         # Red
-Green="\033[1;32m"       # Green
-Yellow="\033[1;33m"      # Yellow
-Blue="\033[1;34m"        # Blue
-Purple="\033[1;35m"      # Purple
-Cyan="\033[1;36m"        # Cyan
-White="\033[1;37m"       # White
+# ================= COLORS =================
+RESET="\033[0m"
+BLACK="\033[1;30m"
+RED="\033[1;31m"
+GREEN="\033[1;32m"
+YELLOW="\033[1;33m"
+BLUE="\033[1;34m"
+PURPLE="\033[1;35m"
+CYAN="\033[1;36m"
+WHITE="\033[1;37m"
 
-apt-get update
-apt-get upgrade
-apt-get install python
-apt-get install python2
-
-clear 
-echo -e "$Red Welcome to drmatoi/minecraft! Version: Beta 4.0 \033[1;31m"
-sleep 2.0
+# ================= SETUP =================
 clear
-echo -e "$Green 
-╔══════════════════════════════════════════════════════════╦════════════════════╦═══════════════════════════════════════════╗
-║      Host a Minecraft Server using Android - Termux      ║   By drmatoi       ║    ╭――――――――――――――――――――――――――――――――――――╮ ║  
-║══════════════════════════════════════════════════════════╬════════════════════╣    │  WARNING! OpenJDK21                │ ║
-║  This script requires Termux (Updated F-Droid Version)   ║    Contact:        ║    │  Version 1.19.2 & 1.16.5 are still │ ║
-║                                                          ║  t.me/drmatoi      ║    │  unstable and under development!   │ ║
-║             Please report problems in Issues             ╠════════════════════╣    ╰――――――――――――――――――――――――――――――――――――╯ ║                 
-║               github.com/drmatoi/minecraft               ║  Version Beta4.0   ║                                           ║
-╚══════════════════════════════════════════════════════════╩════════════════════╩═══════════════════════════════════════════╝
-\033[1;36m"
+pkg update -y
+pkg upgrade -y
+pkg install -y git python python2
 
+clear
+echo -e "${RED}"
+echo "██╗   ██╗███████╗██████╗ ████████╗██╗██╗   ██╗███████╗"
+echo "██║   ██║██╔════╝██╔══██╗╚══██╔══╝██║██║   ██║██╔════╝"
+echo "██║   ██║█████╗  ██████╔╝   ██║   ██║██║   ██║███████╗"
+echo "╚██╗ ██╔╝██╔══╝  ██╔══██╗   ██║   ██║██║   ██║╚════██║"
+echo " ╚████╔╝ ███████╗██║  ██║   ██║   ██║╚██████╔╝███████║"
+echo "  ╚═══╝  ╚══════╝╚═╝  ╚═╝   ╚═╝   ╚═╝ ╚═════╝ ╚══════╝"
+echo -e "${CYAN}          Vertius Server • Minecraft on Termux${RESET}"
+echo ""
+sleep 2
+clear
 
-    echo " "
-    echo -e "$Red       ⫸$Green Choose your version! $Red ⫷\033[0m"
-echo " "
-echo -e " $Green     |---------------------------------------------------------------------|"
-echo -e " $Green     ||----------------------------$Cyan [List] $Green---------------------------||"
-echo -e " $Green     ||                                                                   "
-echo -e " $Green     ||             $Purple==>$Yellow[1] Minecraft Version 1.15.2 - 4GB / 8GB / 12GB RAM$Green                    "
-echo -e " $Green     ||             $Purple==>$Yellow[2] Minecraft Version 1.16.5 - 8GB RAM (Unstable version)$Green                    "
-echo -e " $Green     ||             $Purple==>$Yellow[3] Minecraft Version 1.19.2 - 8GB RAM (Unstable version)$Green                    "
-echo -e " $Green     ||             $Purple==>$Yellow  $Green                    "
-echo -e " $Green     ||             $Purple==>$Yellow[000] Reset/Update Launcher$Green                                           "
-echo -e " $Green     ||                                                                   "                                                                                       
-echo -e " $Green     ||---------------------------$Cyan [select option] $Green-----------------------||"
-echo -e " $Green     |---------------------------------------------------------------------|"
-echo " "
-echo " "
+# ================= MAIN UI =================
+echo -e "${GREEN}╔══════════════════════════════════════════════════════╗"
+echo -e "${GREEN}║${CYAN}          Vertius Minecraft Server Launcher          ${GREEN}║"
+echo -e "${GREEN}╠══════════════════════════════════════════════════════╣"
+echo -e "${GREEN}║ ${YELLOW}[1]${WHITE} Minecraft 1.15.2  (Stable | 4–12GB RAM)        ${GREEN}║"
+echo -e "${GREEN}║ ${YELLOW}[2]${WHITE} Minecraft 1.16.5  (Beta | Unstable)            ${GREEN}║"
+echo -e "${GREEN}║ ${YELLOW}[3]${WHITE} Minecraft 1.19.2  (Beta | Unstable)            ${GREEN}║"
+echo -e "${GREEN}║                                                      ${GREEN}║"
+echo -e "${GREEN}║ ${YELLOW}[0]${WHITE} Reset / Update Vertius Server                  ${GREEN}║"
+echo -e "${GREEN}╚══════════════════════════════════════════════════════╝"
+echo ""
+echo -ne "${CYAN}Select an option ➜ ${RESET}"
+read ch
 
-    read ch
-   if [ $ch -eq 1 ];then
-        pkg install git
-git clone https://github.com/drmatoi/minecraft
-cd minecraft
-chmod +x launcher.sh
-./launcher.sh
-        exit
-    
-    elif [ $ch -eq 2 ];then
- pkg install git
-git clone https://github.com/drmatoi/minecraft
-cd minecraft
-chmod +x betalauncher1.16.5.sh
-./betalauncher1.16.5.sh
-     
-        exit
-
-elif [ $ch -eq 3 ];then
- pkg install git
-git clone https://github.com/drmatoi/minecraft
-cd minecraft
-chmod +x betalauncher1.19.2.sh
-./betalauncher1.19.2.sh
-     
-        exit
-
-   elif [ $ch -eq 000 ];then
- rm -rf minecraft
-git clone https://github.com/drmatoi/minecraft
-cd minecraft
-chmod +x START.sh
-./START.sh
-     
-        exit
-        
-    else
-        echo -e "\e[4;32m Enter one of the options above !!! \e[0m"
-        pause
-    fi
-done
+# ================= OPTIONS =================
+case $ch in
+1)
+    clear
+    echo -e "${GREEN}Launching Minecraft 1.15.2...${RESET}"
+    git clone https://github.com/drmatoi/minecraft
+    cd minecraft || exit
+    chmod +x launcher.sh
+    ./launcher.sh
+    ;;
+2)
+    clear
+    echo -e "${YELLOW}Launching Minecraft 1.16.5 (Unstable)...${RESET}"
+    git clone https://github.com/drmatoi/minecraft
+    cd minecraft || exit
+    chmod +x betalauncher1.16.5.sh
+    ./betalauncher1.16.5.sh
+    ;;
+3)
+    clear
+    echo -e "${YELLOW}Launching Minecraft 1.19.2 (Unstable)...${RESET}"
+    git clone https://github.com/drmatoi/minecraft
+    cd minecraft || exit
+    chmod +x betalauncher1.19.2.sh
+    ./betalauncher1.19.2.sh
+    ;;
+0)
+    clear
+    echo -e "${RED}Resetting Vertius Server...${RESET}"
+    rm -rf minecraft
+    git clone https://github.com/drmatoi/minecraft
+    cd minecraft || exit
+    chmod +x START.sh
+    ./START.sh
+    ;;
+*)
+    echo -e "${RED}Invalid option! Please choose a valid number.${RESET}"
+    sleep 2
+    bash START.sh
+    ;;
+esac
